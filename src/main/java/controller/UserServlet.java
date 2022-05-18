@@ -84,6 +84,10 @@ public class UserServlet extends HttpServlet {
                 case "order":
                     orderByName(request, response);
                     break;
+                case "test-without-tran":
+                    testWithoutTran(request, response);
+                    break;
+
                 default:
                     listUser(request, response);
                     break;
@@ -92,7 +96,11 @@ public class UserServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
+    private void testWithoutTran(HttpServletRequest request, HttpServletResponse response) {
 
+        userDAO.insertUpdateWithoutTransaction();
+
+    }
     private void listUser(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<User> listUser = userDAO.selectAllUsers();
